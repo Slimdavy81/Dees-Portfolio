@@ -1,0 +1,264 @@
+/*import fonts from google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* css reset */
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    line-height: 1em;
+}
+
+
+/*default styles for whole page*/
+body {
+    color: #fffdfd;
+    border-color: #fffdfd;
+    background-color: #070707;
+    background-size: 100% 100%;
+}
+
+/*content container to centre content */
+.container {
+    max-width: 1020px;
+    margin: 0 auto 0 auto;
+}
+
+/*default styling for headings */
+H1,
+H2,
+H3,
+H4,
+H6,
+H6 {
+    font-family: "Sour Gummy", Times, serif;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+/*specific styles*/
+h1 {
+    font-size: 4.25rem;
+    margin-bottom: 2rem;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+
+}
+
+h3 {
+    font-size: 2.0rem;
+    margin-bottom: 0.5rem;
+
+}
+
+h4 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+
+p {
+    font-family: "Sour Gummy", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    font-style: normal;
+}
+
+/*paragraph large */
+p.large {
+    font-family: "Sour Gummy", Georgia, 'Times New Roman', Times,
+        serif;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+ul {
+    list-style: disc outside;
+    margin-bottom: 1.5rem;
+    margin-left: 1.25rem;
+}
+
+ul li {
+    font-family: "Sour Gummy", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 1.125rem;
+    margin-bottom: .5rem;
+}
+
+/* hyperlinks */
+a {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: #006bc3;
+}
+
+a:hover {
+    color: #00447B;
+}
+
+a:visited {
+    color: #6935d2;
+}
+
+/* images*/
+img {
+    max-width: 1020px;
+    width: 100%;
+    height: auto;
+    border: 0px solid #101010;
+    margin-bottom: 2rem;
+}
+
+/*blockquote*/
+figure.quote {
+    border-left: 8px solid #6941d8;
+    padding: 1.5rem 0 1.5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+figure.quote p {
+    margin-bottom: 0;
+}
+
+figure.quote blockquote {
+    margin-bottom: .5rem;
+}
+
+figure.quote figcaption p {
+    font-weight: 700;
+}
+
+footer {
+    padding: 1.5rem 0 1.5rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #faf8f8;
+}
+main {
+margin-bottom: 2.5rem;
+}
+header{
+    border-bottom:2px solid #101010;
+    padding:1.5rem 0;
+    }
+    header p.logo{
+    font-weight: 700;
+    margin-bottom:0;
+    font-size:1.75rem;
+    line-height: 1.1;
+    }
+   
+    .colour-block{
+    padding:3rem 0 3rem 0;
+    background-color:#CBD7DF;
+    margin-bottom:2.5rem;
+    }
+    .highlight {
+        background-color: #D8415C;
+        padding:0 0.5rem;
+        }
+        /*css grids*/
+        .grid {
+            display: flex;
+            gap:24px;
+            flex-direction: row;
+        }
+        /* CSS grids column widths */
+.grid-col-third {
+    flex-basis: 33.33%;
+    }
+    .grid-col-twoThirds {
+    flex-basis: 66.66%;
+    }
+/* media queries */
+@media only screen and (max-width:1068px) {
+    .container {
+    margin: 0 24px 0 24px;
+    }
+    }
+    @media only screen and (max-width: 768px) {
+    }
+    @media only screen and (max-width: 600px) {
+    .container {
+    margin: 0 16px 0 16px;
+    }
+    }
+    /* media queries */
+@media only screen and (max-width:1068px) {
+    .container {
+    margin: 0 24px 0 24px;
+    }
+    }
+    @media only screen and (max-width: 768px) {
+    .grid {
+    flex-direction: column;
+    }
+    }
+    @media only screen and (max-width: 600px) {
+    .container {
+    margin: 0 16px 0 16px;
+    }
+    }
+    @media only screen and (max-width: 600px) {
+        .container {
+        margin: 0 16px 0 16px;
+        }
+        h1{
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+        }
+        h2{
+        font-size: 1.875rem;
+        }
+        h3{
+        font-size: 1.5rem;
+        }
+        h4{
+        font-size: 1.25rem;
+        }
+        }
+        @media only screen and (max-width: 600px) {
+            /*add below headings*/
+            p.large {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            }
+            p{
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            }
+            }
+            @media only screen and (max-width: 600px) {
+                /*add below paragraphs*/
+                ul {
+                margin-bottom: 1rem;
+                }
+                ul li {
+                font-size: 1rem;
+                margin-bottom: .5rem;
+                }
+                }
+                @media only screen and (max-width: 600px) {
+                    /*add below lists*/
+                    header p.logo{
+                    font-size:1.25rem;
+                    }
+                    .colour-block{
+                    padding:2rem 0;
+                    margin-bottom:2rem;
+                    }
+                    }
+                    
+
+ 
