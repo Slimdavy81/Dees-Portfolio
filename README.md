@@ -1,2 +1,2 @@
-# Women-In-Design
-this is text about women in design
+# Dees Portfolio
+this all my work of late
