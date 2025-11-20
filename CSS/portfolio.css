@@ -20,7 +20,7 @@ body {
 
 /*content container to centre content */
 .container {
-    max-width: 1020px;
+    max-width: 1080px;
     margin: 0 auto 0 auto;
 }
 
@@ -46,7 +46,7 @@ h1 {
 h2 {
     font-size: 2.25rem;
     margin-bottom: 0.5rem;
-
+   
 }
 
 h3 {
@@ -119,6 +119,7 @@ img {
     height: auto;
     border: 0px solid #101010;
     margin-bottom: 2rem;
+    
 }
 
 /*blockquote*/
