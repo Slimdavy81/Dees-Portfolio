@@ -2,48 +2,67 @@
 <html lang="en">
 
 <head>
-  <link href="CSS/portfolio.css" rel="stylesheet" type="text/css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <Meta name="description" content="This page covers the development of my music App">
-  <title>Music App Development</title>
+  <meta name="description" content="This page covers the development of my music app.">
+  <title>Music App Development - David Gamble</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Orbitron:wght@500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="CSS/portfolio.css" rel="stylesheet" type="text/css">
+  <script src="JS/page-transitions.js" defer></script>
+  <script src="gallery/gallery-settings.js" defer></script>
+  <script src="JS/portfolio-ui-sounds.js" defer></script>
 </head>
 
-<body>
-  <header>
-    <div class="container">
-      <p class="logo">David Gamble</p>
+<body class="portfolio-index">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <p class="logo">
+        <a class="logo__link" href="index.html"><span class="logo__name">David Gamble</span></a><span class="logo__tag">Music App · UI Case Study</span>
+      </p>
+      <nav class="site-header__nav" aria-label="Primary">
+        <a class="site-header__link site-header__link--back" href="index.html" aria-label="Back to portfolio"><span aria-hidden="true">&larr;</span></a>
+      </nav>
     </div>
   </header>
-  <main>
-    <div class="container grid">
 
-      <div>
-        <image src=images/Brand.jpg>
-          <image src=images/ephones.jpg></image>
+  <main id="main" class="case-study-page">
+    <section class="case-study-hero container">
+      <div class="case-study-hero__copy">
+        <p class="home-dashboard__tile-kicker">Case Study</p>
+        <h1>Music App Development</h1>
+        <p class="intro">A rock and metal themed music application concept, developed from early naming sketches through UI graphics, navigation, wireframes, and prototype design.</p>
       </div>
-    </div>
+      <div class="case-study-hero__media sf-hud-corners">
+        <img src="images/Brand.jpg" alt="Music app brand design">
+        <img src="images/ephones.jpg" alt="Music app earphones mockup">
+      </div>
+    </section>
 
-    <div class="container grid">
-      
-      <div class="grid-col-third">
-        <nav>
-          <h2>App Development</h2>
-          <ul>
-            <li><a href="#Sketches/Name">Sketches/Name</a></li>
+    <div class="container grid case-study-layout">
+      <aside class="grid-col-third sidebar" aria-label="Music app sections">
+        <nav class="side-nav">
+          <h2 class="side-nav__title">App Development</h2>
+          <ul class="side-nav__list">
+            <li><a href="#sketches-name">Sketches / Name</a></li>
             <li><a href="#Wireframes">Wireframes</a></li>
-            <li><a href="#Graphics/Navigation">Graphics/Navigation</a></li>
+            <li><a href="#graphics-navigation">Graphics / Navigation</a></li>
           </ul>
         </nav>
-      </div>
-      <div class="grid-col-twoThirds">
+      </aside>
+
+      <article class="grid-col-twoThirds case-study-content sf-hud-corners">
         <p class="large">This seemed like it was a project specifically catered to me. Everybody has spotify or a
           simialar style music application which ticks almost all the boxes for navigation, flow and customisation. With
           its build in algorythm there did'nt seem any logic in trying to recreate something that has already been done.
           For that reason I decided to direct the design to an application I would use personally. Putting myself as
           the user, I steered the design towards Rock/Metal. From the sketches below I began drawing possible icons for
           the genres and sub genres. </p>
-        <h2 id="Sketches/Name">Sketches/Name</h2> 
+        <h2 id="sketches-name">Sketches / Name</h2>
         <img src="images/genres.jpg" alt="image/genres.jpg">
 
         <p>After condering the time frame for the assignment I soon realised to create a funcional application with all
@@ -78,7 +97,7 @@
         <p>In my head this alone with a nvigation panel at the bottom seemed like a much to simplistic appraoch so I
           began to think what I could add to give a more complete looking UI. I seen this guitar Icon online and
           immediately knew I wanted to implement it into my Interface In some way...</p>
-          <h2 id="Graphics/Navigation">Graphics/Navigation</h2>
+        <h2 id="graphics-navigation">Graphics / Navigation</h2>
         <img src="images/Copied GIcon (1).jpg" alt="guitar Icon">
         <p>This really was the key to completing my UI. I was confident that having this as the main source of navigating
           between the two styles of rock was the way to go. Having it as an overlayed layer you could slide down with
@@ -103,24 +122,16 @@
         <img src="images/Favourites (1).jpg" alt="search graphic">
         <p>For the full design with the other elements take a look at the prototype created with Photoshop, Illustrator,
           Figma and Adobe After Effects. </p>
-          <li> <a
-                href="https://www.figma.com/proto/DPL4sPJqL1fnoR7EJJZX6G/R-R-Music-App?node-id=33-2">Prototype</a>
-            </li>
-
-
-      </div>
+        <p>
+          <a class="case-study-prototype" href="https://www.figma.com/proto/DPL4sPJqL1fnoR7EJJZX6G/R-R-Music-App?node-id=33-2" target="_blank" rel="noopener noreferrer">Open prototype</a>
+        </p>
+      </article>
     </div>
 
-    </div>
-
-
-
-
-    </div>
+    <nav class="case-study-back" aria-label="Back to portfolio">
+      <a class="case-study-back__link" href="index.html"><span aria-hidden="true">&larr;</span> Back to portfolio home</a>
+    </nav>
   </main>
-  
-
-  </div>
 </body>
 
 </html>

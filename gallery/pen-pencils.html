@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pen &amp; Pencils — Gallery</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="luis-royo.css">
+	<link rel="stylesheet" href="gallery-settings.css">
+	<script src="gallery-settings.js"></script>
+</head>
+<body>
+
+	<div class="slideshow">
+		<header class="slideshow-header">
+			<a href="index.html" class="btn-back">← Back to gallery</a>
+			<h1>Pen &amp; Pencils</h1>
+			<div class="header-meta">
+				<span class="counter" id="slide-counter">1 / 1</span>
+				<button type="button" class="btn-playpause" id="btn-playpause" aria-label="Pause slideshow">❚❚</button>
+			</div>
+		</header>
+
+		<div class="slideshow-stage" id="slideshow-stage">
+			<button type="button" class="btn-nav btn-nav--prev" id="btn-prev" aria-label="Previous image">‹</button>
+			<div class="slideshow-frame" id="slideshow-frame" aria-live="polite">
+				<div class="carousel-track" id="carousel-track"></div>
+				<nav class="carousel-dots" id="carousel-dots" aria-label="Slide indicators"></nav>
+			</div>
+			<button type="button" class="btn-nav btn-nav--next" id="btn-next" aria-label="Next image">›</button>
+		</div>
+
+		<nav class="slideshow-thumbs" id="slideshow-thumbs" aria-label="Image thumbnails"></nav>
+	</div>
+
+	<script src="slideshow-carousel.js"></script>
+	<script src="pen-pencils.js"></script>
+</body>
+</html>

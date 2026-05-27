@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="David Gamble — motion graphics and animation work.">
+  <title>Animations — David Gamble</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Orbitron:wght@500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="CSS/portfolio.css" rel="stylesheet" type="text/css">
+  <script src="JS/page-transitions.js" defer></script>
+  <script src="JS/animations-playlist.js" defer></script>
+  <script src="gallery/gallery-settings.js" defer></script>
+  <script src="JS/portfolio-ui-sounds.js" defer></script>
+</head>
+
+<body class="portfolio-index">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="page-bg page-bg--matrix" aria-hidden="true">
+    <video
+      class="page-bg__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      tabindex="-1">
+      <source src="After effects/Matrix rain.mp4" type="video/mp4">
+    </video>
+    <div class="page-bg__scrim" aria-hidden="true"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <p class="logo">
+        <a class="logo__link" href="index.html"><span class="logo__name">David Gamble</span></a><span class="logo__tag">Illustration · Motion · UI</span>
+      </p>
+      <nav class="site-header__nav" aria-label="Primary">
+        <a class="site-header__link site-header__link--back" href="index.html" aria-label="Back to portfolio"><span aria-hidden="true">←</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="illustrations-page">
+    <section class="container animations-page__section">
+      <p class="animations-page__subhead">
+        <a class="logo__link" href="#animations-ae-playlist" id="animations-ae-title">
+          <span class="logo__name">After Effects Videos</span>
+        </a>
+      </p>
+      <section
+        id="animations-ae-playlist"
+        class="animations-playlist"
+        aria-labelledby="animations-ae-title">
+        <div class="animations-playlist__shell">
+          <div class="animations-playlist__player-panel">
+            <div class="animations-playlist__frame">
+              <video
+                class="animations-playlist__video"
+                controls
+                playsinline
+                preload="metadata"
+                aria-label="Playlist video preview"></video>
+            </div>
+            <p id="ae-playlist-status" class="animations-playlist__status visually-hidden" aria-live="polite"></p>
+          </div>
+          <div class="animations-playlist__list-panel">
+            <p class="animations-playlist__list-label" id="ae-playlist-list-label">Clips · A–Z</p>
+            <ol class="animations-playlist__list" aria-labelledby="ae-playlist-list-label"></ol>
+          </div>
+        </div>
+      </section>
+      <p class="illustrations-page__lede animations-page__lede">A variety of different videos with After Effects. Everything from character rigging, text, Saber plugin effects and the best use of fractal noise are covered.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p><a class="illustrations-page__back-link" href="index.html" aria-label="Back to main portfolio"><span aria-hidden="true">←</span></a></p>
+    </div>
+  </footer>
+</body>
+
+</html>

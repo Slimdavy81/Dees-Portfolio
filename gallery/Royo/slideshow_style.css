@@ -1,0 +1,249 @@
+* {box-sizing: border-box}
+
+img {vertical-align: middle}
+
+/* Container */
+.overall-container {
+   position: relative;
+   /* Disable selection */
+   user-select: none;
+   margin: auto;
+}
+
+/* Keep aspect ratio of image during fullscreen */
+.overall-container:-webkit-full-screen #slide-image {
+   margin: auto;
+   display: block;
+   width: 100vw !important;
+   height: auto;
+}
+
+.overall-container:fullscreen #slide-image {
+   margin: auto;
+   display: block;
+   width: 100vw !important;
+   height: auto;
+}
+
+/* Slideshow */
+.slideshow-main {
+   /* Black background for slideshow */
+   background-color: #000;
+}
+
+/* Set opacity for play controls when hovering slideshow */
+.slideshow-main:hover .play-controls {
+   opacity: 0.6;
+}
+
+/* Set opacity for play controls when hovering play button */
+.slideshow-main .play-controls:hover {
+   opacity: 1;
+}
+
+/* Set opacity for fullscreen controls when hovering slideshow */
+.slideshow-main:hover .fullscreen-controls {
+   opacity: 0.6;
+}
+
+/* Set opacity for fullscreen controls when hovering fullscreen button */
+.slideshow-main .fullscreen-controls:hover {
+   opacity: 1;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+   position: absolute;
+   width: auto;
+   top: 50%;
+   padding: 16px;
+   margin-top: -50px;
+   color: white;
+   font-weight: bold;
+   font-size: 20px;
+   transition: opacity 0.6s linear;
+   opacity: 0;
+   border-radius: 0 10px 10px 0;
+   /* Pointer cursor when hovering previous and next buttons */
+   cursor: pointer;
+}
+
+/* Set opacity for prev button when hovering slideshow */
+.slideshow-main:hover .prev {
+   opacity: 0.6;
+}
+
+/* Set opacity when hovering prev button */
+.slideshow-main .prev:hover {
+   opacity: 1;
+}
+
+/* Set opacity for next button when hovering slideshow */
+.slideshow-main:hover .next {
+   opacity: 0.6;
+}
+
+/* Set opacity when hovering next button */
+.slideshow-main .next:hover {
+   opacity: 1;
+}
+
+/* Position the "prev button" to the left */
+.prev {
+   left: 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+   right: 0;
+   border-radius: 10px 0 0 10px;
+}
+
+/* On hover, add a translucent gray background color */
+.prev:hover, .next:hover {
+   background-color: rgba(96, 96, 96, 0.8);
+}
+
+/* Play button */
+.play-controls {
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   top: 50%;
+   /* Center the play button */
+   left: 50%;
+   margin: -50px 0px 0px -30px;
+   padding: 7px;
+   border: 5px solid #606060;
+   border-radius: 50%;
+   transition: opacity 0.6s linear;
+   opacity: 0;
+   background-color: #b6b6b6;
+   cursor: pointer;
+}
+
+#play {
+   width: 40px;
+   height: 40px;
+   display: block;
+}
+
+#pause {
+   width: 40px;
+   height: 40px;
+   display: none;
+}
+
+/* Fullscreen button */
+.fullscreen-controls {
+   position: absolute;
+   width: 35px;
+   height: 34px;
+   /* Fullscreen button is placed on bottom-right */
+   bottom: 11px;
+   right: 11px;
+   margin: -24px 0px 0px -24px;
+   padding: 3px;
+   border-style: solid;
+   border-color: #606060;
+   border-radius: 50%;
+   transition: opacity 0.6s linear;
+   opacity: 0;
+   background-color: #b6b6b6;
+   cursor: pointer;
+   z-index: 1;
+}
+
+#view-fullscreen {
+   margin: -1px 0px 0px -1px;
+   width: 26px;
+   height: 26px;
+   display: block;
+}
+
+#exit-fullscreen {
+   margin: -1px 0px 0px -1px;
+   width: 26px;
+   height: 26px;
+   display: none;
+}
+
+/* NCH Watermark */
+.wm-free {
+   position: absolute;
+   width: 100%;
+   bottom: 0px;
+   text-align: center;
+   padding: 4px 4px 10px 10px;
+   border-radius: 2px;
+   font-family: Arial, sans-serif;
+   color: white;
+   transition: opacity 0.6s linear;
+   opacity: 0.5;
+}
+
+/* The selectors for nagivating through slides*/
+.sequence-controls {
+   width: 100%;
+   position: absolute;
+   margin: auto;
+   left: 0px;
+   bottom: -40px;
+   transition: 0.8s;
+}
+
+.slide-selector {
+   height: 15px;
+   width: 15px;
+   margin: 0 2px;
+   background-color: #afafaf;
+   border-radius: 4px;
+   display: inline-block;
+   transition: background-color 0.6s ease, opacity 0.6s linear;
+   cursor: pointer;
+}
+
+.active, .slide-selector:hover {
+   background-color: #404040;
+}
+
+/* Cross fade animation: 2 seconds */
+.make-invisible {
+   -webkit-animation-name: fade-invisible;
+   -webkit-animation-duration: 2s;
+   -webkit-animation-timing-function: linear;
+   animation-name: fade-invisible;
+   animation-duration: 2s;
+   animation-timing-function: linear;
+}
+
+@-webkit-keyframes fade-invisible {
+   from {opacity: 1}
+   to {opacity: 0}
+}
+
+@keyframes fade-invisible {
+   from {opacity: 1}
+   to {opacity: 0}
+}
+
+/* Cross fade animation: 2 seconds */
+.make-visible {
+   -webkit-animation-name: fade-visible;
+   -webkit-animation-duration: 2s;
+   -webkit-animation-timing-function: linear;
+   animation-name: fade-visible;
+   animation-duration: 2s;
+   animation-timing-function: linear;
+}
+
+@-webkit-keyframes fade-visible {
+   from {opacity: 0}
+   to {opacity: 1}
+}
+
+@keyframes fade-visible {
+   from {opacity: 0}
+   to {opacity: 1}
+}
+

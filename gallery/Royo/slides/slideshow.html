@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="slideshow_style.css">
+<script type="text/javascript" src="slideshow_script.js"></script>
+</head>
+
+<body onload="ShowSlide(1); LoadFirstSlideHiRes(); TogglePlay()">
+<!--The parent div of overall-container should have its dimensions (width, height) set-->
+<div class="overall-container">
+<div class="slideshow-main" onmousemove="SlideshowMouseMove()">
+<div class="slide" style="display:block">
+   <img id="slide-image" src="html/Image_0_small.png" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+<div class="slide" style="display:none">
+   <img id="slide-image" style="width:100%">
+</div>
+
+
+<a class="prev" onclick="PrevSlide()" onmouseover="MouseOverElem(2)" onmouseout="MouseOutElem()">&#10094;</a>
+
+<a class="next" onclick="NextSlide()" onmouseover="MouseOverElem(3)" onmouseout="MouseOutElem()">&#10095;</a>
+
+<div class="play-container" style="visibility:hidden">
+   <div class="play-controls" onclick="TogglePlay()" onmouseover="MouseOverElem(1)" onmouseout="MouseOutElem()">
+      <img id="play" src="html/play_big_gray.png">
+      <img id="pause" src="html/pause_big_gray.png">
+   </div>
+</div>
+
+<div class="fullscreen-container">
+   <div class="fullscreen-controls" onclick="ToggleFullscreen()" onmouseover="MouseOverElem(4)" onmouseout="MouseOutElem()">
+      <img id="view-fullscreen" src="html/view_fullscreen.png">
+      <img id="exit-fullscreen" src="html/exit_fullscreen.png">
+   </div>
+</div>
+
+
+</div> <!-- slideshow-main -->
+<div class="sequence-controls" onmouseover="MouseOverElem(5)" onmouseout="MouseOutElem()">
+<br>
+
+<div style="text-align:center">
+   <span class="slide-selector" onclick="MoveSlide(1)"></span>
+   <span class="slide-selector" onclick="MoveSlide(2)"></span>
+   <span class="slide-selector" onclick="MoveSlide(3)"></span>
+   <span class="slide-selector" onclick="MoveSlide(4)"></span>
+   <span class="slide-selector" onclick="MoveSlide(5)"></span>
+   <span class="slide-selector" onclick="MoveSlide(6)"></span>
+   <span class="slide-selector" onclick="MoveSlide(7)"></span>
+   <span class="slide-selector" onclick="MoveSlide(8)"></span>
+   <span class="slide-selector" onclick="MoveSlide(9)"></span>
+   <span class="slide-selector" onclick="MoveSlide(10)"></span>
+   <span class="slide-selector" onclick="MoveSlide(11)"></span>
+   <span class="slide-selector" onclick="MoveSlide(12)"></span>
+   <span class="slide-selector" onclick="MoveSlide(13)"></span>
+   <span class="slide-selector" onclick="MoveSlide(14)"></span>
+   <span class="slide-selector" onclick="MoveSlide(15)"></span>
+   <span class="slide-selector" onclick="MoveSlide(16)"></span>
+   <span class="slide-selector" onclick="MoveSlide(17)"></span>
+   <span class="slide-selector" onclick="MoveSlide(18)"></span>
+   <span class="slide-selector" onclick="MoveSlide(19)"></span>
+   <span class="slide-selector" onclick="MoveSlide(20)"></span>
+   <span class="slide-selector" onclick="MoveSlide(21)"></span>
+</div>
+</div>
+</div> <!-- overall-container -->
+</body>
+</html>

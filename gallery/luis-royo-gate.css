@@ -1,0 +1,164 @@
+html.royo-locked .royo-slideshow {
+	visibility: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.royo-gate {
+	position: fixed;
+	inset: 0;
+	z-index: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	background:
+		radial-gradient(ellipse 70% 50% at 50% 40%, rgba(0, 245, 255, 0.08) 0%, transparent 55%),
+		#0a0014;
+	font-family: "Rajdhani", Arial, sans-serif;
+}
+
+.royo-gate__panel {
+	width: min(360px, 100%);
+	padding: 28px 24px 24px;
+	border: 1px solid rgba(0, 245, 255, 0.35);
+	border-radius: 8px;
+	background: rgba(10, 0, 30, 0.94);
+	box-shadow:
+		0 0 30px rgba(0, 245, 255, 0.15),
+		0 0 50px rgba(255, 42, 109, 0.1),
+		inset 0 0 40px rgba(0, 245, 255, 0.04);
+}
+
+.royo-gate__title {
+	margin: 0 0 8px;
+	font-family: "Orbitron", Arial, sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #ff2a6d;
+	text-shadow: 0 0 12px rgba(255, 42, 109, 0.6);
+}
+
+.royo-gate__text {
+	margin: 0 0 20px;
+	font-size: 0.95rem;
+	line-height: 1.45;
+	color: #9ec8e8;
+}
+
+.royo-gate__label {
+	display: block;
+	margin: 0 0 8px;
+	font-family: "Orbitron", Arial, sans-serif;
+	font-size: 0.65rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #00f5ff;
+}
+
+.royo-gate__input {
+	display: block;
+	width: 100%;
+	margin: 0 0 16px;
+	padding: 12px 14px;
+	border: 2px solid rgba(0, 245, 255, 0.4);
+	border-radius: 6px;
+	box-sizing: border-box;
+	background: rgba(0, 0, 0, 0.45);
+	color: #e8f4ff;
+	font-family: "Rajdhani", Arial, sans-serif;
+	font-size: 1rem;
+	letter-spacing: 0.06em;
+}
+
+.royo-gate__input:focus {
+	outline: none;
+	border-color: #00f5ff;
+	box-shadow: 0 0 16px rgba(0, 245, 255, 0.35);
+}
+
+.royo-gate__submit {
+	display: block;
+	width: 100%;
+	margin: 0 0 12px;
+	padding: 14px 16px;
+	border: 2px solid rgba(0, 245, 255, 0.5);
+	border-radius: 6px;
+	background: rgba(0, 245, 255, 0.1);
+	color: #00f5ff;
+	font-family: "Orbitron", Arial, sans-serif;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.royo-gate__submit:hover,
+.royo-gate__submit:focus {
+	outline: none;
+	border-color: #00f5ff;
+	box-shadow: 0 0 18px rgba(0, 245, 255, 0.45);
+}
+
+.royo-gate__back {
+	display: block;
+	text-align: center;
+	color: #7eb8d4;
+	font-size: 0.9rem;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.royo-gate__back:hover {
+	color: #ff2a6d;
+}
+
+.royo-gate__error {
+	margin: 0 0 12px;
+	font-size: 0.9rem;
+	color: #ff6b9d;
+	text-align: center;
+}
+
+.royo-gate__error[hidden] {
+	display: none;
+}
+
+html[data-neon-theme="future"] .royo-gate {
+	background: #06080c;
+}
+
+html[data-neon-theme="future"] .royo-gate__panel {
+	border: 1px solid rgba(180, 192, 208, 0.35);
+	background: linear-gradient(165deg, #3d4550 0%, #1e242c 40%, #151a22 100%);
+	box-shadow:
+		0 12px 40px rgba(0, 0, 0, 0.65),
+		inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+html[data-neon-theme="future"] .royo-gate__title {
+	font-family: "Michroma", "Orbitron", sans-serif;
+	color: #e8edf4;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+html[data-neon-theme="future"] .royo-gate__label,
+html[data-neon-theme="future"] .royo-gate__submit {
+	font-family: "Michroma", "Orbitron", sans-serif;
+	color: #d0dae6;
+	border-color: rgba(180, 192, 208, 0.45);
+}
+
+html[data-neon-theme="future"] .royo-gate__input {
+	font-family: "Exo 2", "Rajdhani", sans-serif;
+	border-color: rgba(180, 192, 208, 0.4);
+	color: #eef2f7;
+}

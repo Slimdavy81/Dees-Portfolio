@@ -2,192 +2,779 @@
 <html lang="en">
 
 <head>
-  <link href="CSS/portfolio.css" rel="stylesheet" type="text/css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <Meta name="description" content="Portfolio ">
-  <title>Davids Portfolio</title>
-  
+  <meta name="description" content="David Gamble — illustrator, motion designer, and digital design student portfolio.">
+  <title>David Gamble — Portfolio</title>
+  <script>
+    (function () {
+      try {
+        var seenIntro = window.sessionStorage.getItem("portfolioIntroSeen") === "true";
+        var cameFromSite = false;
+
+        if (document.referrer) {
+          var referrerUrl = new URL(document.referrer);
+          var currentUrl = new URL(window.location.href);
+          var currentFolder = currentUrl.pathname.replace(/\/[^/]*$/, "/");
+          cameFromSite = referrerUrl.origin === currentUrl.origin && referrerUrl.pathname.indexOf(currentFolder) === 0;
+        }
+
+        if (seenIntro || cameFromSite) {
+          document.documentElement.classList.add("site-intro-skip");
+        }
+      } catch (error) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Orbitron:wght@500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="CSS/portfolio.css" rel="stylesheet" type="text/css">
+  <script src="JS/page-transitions.js" defer></script>
+  <script src="JS/site-intro.js" defer></script>
+  <script src="JS/portfolio-motion.js" defer></script>
+  <script src="JS/work-slider.js" defer></script>
+  <script src="JS/smarthome-deck.js" defer></script>
+  <script src="JS/graphic-design-slider.js" defer></script>
+  <script src="JS/blender-deck.js" defer></script>
+  <script src="JS/animations-playlist.js" defer></script>
+  <script src="JS/freelance-player.js" defer></script>
+  <script src="JS/viewport-video.js" defer></script>
+  <script src="JS/favourites-transition.js" defer></script>
+  <script src="JS/contact-overlay.js" defer></script>
+  <script src="gallery/gallery-settings.js" defer></script>
+  <script src="JS/portfolio-ui-sounds.js" defer></script>
 </head>
 
-<body background="images/Background.jpg"></body>
-  
-      
-  
-  </body>
-  <header>
-    <div class="container">
-      <p class="logo">David Gamble</p>
+<body class="portfolio-index has-site-intro">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="site-intro site-intro--needs-start" id="site-intro" aria-label="Portfolio intro video">
+    <video class="site-intro__video" id="site-intro-video" autoplay muted playsinline preload="auto" aria-label="Intro video">
+      <source src="intro.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="site-intro__play" id="site-intro-play">Play intro with music</button>
+    <button type="button" class="site-intro__skip" id="site-intro-skip">Skip intro</button>
+  </div>
+
+  <div class="page-bg" aria-hidden="true">
+    <video
+      class="page-bg__animations-video"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      tabindex="-1">
+      <source src="After effects/Matrix%20rain.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <button type="button" class="settings-tab" id="settings-tab" aria-expanded="false" aria-controls="gallery-settings-panel" aria-label="Settings" title="Settings">
+    <svg class="settings-tab__icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm7.43-2.32.97-.56a1 1 0 0 0 .45-1.36l-.97-1.68a1 1 0 0 0-1.2-.44l-1.15.33a7.03 7.03 0 0 0-1.22-.7l-.17-1.2a1 1 0 0 0-.99-.86h-1.94a1 1 0 0 0-.99.86l-.17 1.2c-.43.17-.84.4-1.22.7l-1.15-.33a1 1 0 0 0-1.2.44l-.97 1.68a1 1 0 0 0 .45 1.36l.97.56-.22 1.13a1 1 0 0 0 .76 1.14l1.94.41a7.08 7.08 0 0 0 0 1.42l-1.94.41a1 1 0 0 0-.76 1.14l.22 1.13-.97.56a1 1 0 0 0-.45 1.36l.97 1.68a1 1 0 0 0 1.2.44l1.15-.33c.38.3.79.53 1.22.7l.17 1.2a1 1 0 0 0 .99.86h1.94a1 1 0 0 0 .99-.86l.17-1.2c.43-.17.84-.4 1.22-.7l1.15.33a1 1 0 0 0 1.2-.44l.97-1.68a1 1 0 0 0-.45-1.36l-.97-.56.22-1.13a1 1 0 0 0-.76-1.14l-1.94-.41a7.08 7.08 0 0 0 0-1.42l1.94-.41a1 1 0 0 0 .76-1.14l-.22-1.13z"/>
+    </svg>
+  </button>
+  <div class="settings-hint" id="settings-hint" role="status" aria-live="polite" hidden>
+    <p class="settings-hint__text" id="settings-hint-text">Themes &amp; quiet mode — tap <strong>Settings</strong> ↑</p>
+    <button type="button" class="settings-hint__dismiss" id="settings-hint-dismiss" aria-label="Dismiss settings hint">×</button>
+  </div>
+  <div class="settings-backdrop" id="settings-backdrop"></div>
+  <aside id="gallery-settings-panel" class="gallery-settings-panel" aria-label="Portfolio settings">
+    <h2>Portfolio options</h2>
+    <p>Choose a neon theme for the main portfolio and keep the same preference when you visit the gallery.</p>
+    <button type="button" class="settings-quiet-toggle" id="settings-quiet-toggle" aria-pressed="false">Quiet mode: OFF</button>
+    <fieldset class="settings-fieldset">
+      <legend>Neon colour</legend>
+      <label class="settings-theme-option">
+        <input type="radio" name="neon-theme" value="portfolio" checked>
+        <span class="settings-theme-swatch settings-theme-swatch--portfolio" aria-hidden="true"></span>
+        <span>Portfolio</span>
+      </label>
+      <label class="settings-theme-option">
+        <input type="radio" name="neon-theme" value="synthwave">
+        <span class="settings-theme-swatch settings-theme-swatch--default" aria-hidden="true"></span>
+        <span>Synthwave</span>
+      </label>
+      <label class="settings-theme-option">
+        <input type="radio" name="neon-theme" value="blue">
+        <span class="settings-theme-swatch settings-theme-swatch--blue" aria-hidden="true"></span>
+        <span>Blue</span>
+      </label>
+      <label class="settings-theme-option">
+        <input type="radio" name="neon-theme" value="green">
+        <span class="settings-theme-swatch settings-theme-swatch--green" aria-hidden="true"></span>
+        <span>Green</span>
+      </label>
+      <label class="settings-theme-option">
+        <input type="radio" name="neon-theme" value="future">
+        <span class="settings-theme-swatch settings-theme-swatch--future" aria-hidden="true"></span>
+        <span>Future</span>
+      </label>
+    </fieldset>
+  </aside>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <p class="logo"><a class="logo__link" href="index.html"><img class="logo__mark" src="Media/logo.gif" alt="" aria-hidden="true"><span class="logo__name">David Gamble</span></a><span class="logo__tag">Illustration · Motion · Digital Developer</span></p>
     </div>
   </header>
-  <main>
-    <div class="container grid">
 
-      <div>
-        <img src=Media/Banner.gif>
-      </div>
-    </div>
+  <main id="main">
+    <section class="home-dashboard" aria-label="Portfolio dashboard">
+      <div class="container home-dashboard__wrap sf-hud-corners">
+        <header class="home-dashboard__chrome">
+          <div class="home-dashboard__chrome-left">
+            <span class="home-dashboard__pulse" aria-hidden="true"></span>
+            <span class="home-dashboard__chrome-title">Overview</span>
+          </div>
+          <span class="home-dashboard__chrome-meta">Banner · Projects</span>
+        </header>
+        <div class="home-dashboard__tiles">
+          <div class="home-dashboard__media-stack">
+          <article class="home-dashboard__tile home-dashboard__tile--banner" aria-label="Banner animation">
+            <div class="home-dashboard__tile-head">
+              <span class="home-dashboard__tile-kicker">Widget</span>
+              <h2 class="home-dashboard__tile-title">Motion banner</h2>
+            </div>
+            <div class="home-dashboard__tile-body">
+              <div class="hero-banner__frame">
+                <img src="Media/Banner.gif" alt="Animated portfolio banner">
+              </div>
+            </div>
+          </article>
 
-    <div class="container grid">
+          <section
+            class="home-dashboard__tile home-dashboard__tile--work work-showcase"
+            aria-label="Projects, Animations, Illustrations, and Freelance"
+            data-work-slider>
+            <div class="home-dashboard__projects-panel-bar" role="group" aria-label="Projects, Animations, Illustrations, and Freelance">
+              <button
+                type="button"
+                class="work-showcase__projects-toggle"
+                id="work-projects-toggle"
+                aria-expanded="false"
+                aria-controls="work-projects-panel">
+                <span class="work-showcase__projects-toggle-main">
+                  <span class="home-dashboard__tile-kicker">Widget</span>
+                  <span class="work-showcase__projects-title">Projects</span>
+                </span>
+                <span class="work-showcase__projects-chevron" aria-hidden="true"></span>
+              </button>
+              <button
+                type="button"
+                id="work-animations-toggle"
+                class="home-dashboard__deck-tab home-dashboard__animations-link"
+                data-animations-toggle
+                aria-expanded="false"
+                aria-controls="work-animations-panel">
+                <span class="home-dashboard__deck-tab-main">
+                  <span class="home-dashboard__tile-kicker">Widget</span>
+                  <span class="work-showcase__projects-title">Animations</span>
+                </span>
+                <span class="work-showcase__projects-chevron" aria-hidden="true"></span>
+              </button>
+              <button
+                type="button"
+                id="work-freelance-toggle"
+                class="home-dashboard__deck-tab home-dashboard__freelance-link"
+                data-freelance-toggle
+                aria-expanded="false"
+                aria-controls="work-freelance-panel">
+                <span class="home-dashboard__deck-tab-main">
+                  <span class="home-dashboard__tile-kicker">Widget</span>
+                  <span class="work-showcase__projects-title">Freelance</span>
+                </span>
+                <span class="work-showcase__projects-chevron" aria-hidden="true"></span>
+              </button>
+              <a class="home-dashboard__deck-tab home-dashboard__illustrations-link" href="gallery/index.html" target="_blank" rel="noopener noreferrer">
+                <span class="home-dashboard__deck-tab-main">
+                  <span class="home-dashboard__tile-kicker">Widget</span>
+                  <span class="work-showcase__projects-title">Illustrations</span>
+                </span>
+                <span class="home-dashboard__deck-tab-external" aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div
+              id="work-projects-panel"
+              class="work-showcase__projects-panel"
+              aria-labelledby="work-projects-toggle"
+              hidden>
+              <div class="work-projects-panel__main">
+              <p class="work-showcase__hint">Hover a slide or dot for the case study beside the carousel — the slides stay visible so you can click through to each project · arrows or dots to move</p>
+              <div
+                class="work-slider"
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="Featured project slides"
+                tabindex="0">
+                <p id="work-slider-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
+        <div class="work-slider__stage">
+          <div class="work-slider__shell">
+            <div class="work-slider__viewport sf-hud-corners" id="work-slider-viewport">
+            <div class="work-slider__track">
+            <div class="work-slider__slide" id="work-slide-0" role="group" aria-roledescription="slide" aria-label="1 of 3" data-slider-body="slider-body-0">
+              <a class="work-slider__card" href="music.html" rel="noopener noreferrer">
+                <img src="images/MusicApp.jpg" alt="Music App Design — interface mockups" width="1200" height="675" decoding="async">
+                <span class="work-slider__meta">
+                  <span class="work-slider__label">Case study</span>
+                  <span class="work-slider__title">Music App Design</span>
+                  <span class="work-slider__action">View project →</span>
+                </span>
+              </a>
+            </div>
+            <div class="work-slider__slide" id="work-slide-1" role="group" aria-roledescription="slide" aria-label="2 of 3" data-slider-body="slider-body-1">
+              <a class="work-slider__card" href="Smartwatch.html">
+                <img src="images/Smartwatch.jpg" alt="Ask Steve — smartwatch UI" width="1200" height="675" decoding="async">
+                <span class="work-slider__meta">
+                  <span class="work-slider__label">Case study</span>
+                  <span class="work-slider__title">Ask Steve</span>
+                  <span class="work-slider__action">View project →</span>
+                </span>
+              </a>
+            </div>
+            <div class="work-slider__slide" id="work-slide-2" role="group" aria-roledescription="slide" aria-label="3 of 3" data-slider-body="slider-body-2">
+              <a class="work-slider__card" href="Branding.html">
+                <img src="images/Stellar.jpg" alt="Stellar banking brand and UI" width="1200" height="675" decoding="async">
+                <span class="work-slider__meta">
+                  <span class="work-slider__label">Case study</span>
+                  <span class="work-slider__title">Brand Identity / Banking</span>
+                  <span class="work-slider__action">View project →</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+            <button type="button" class="work-slider__btn work-slider__btn--prev" aria-controls="work-slider-viewport" aria-label="Previous slide">
+              <span aria-hidden="true">‹</span>
+            </button>
+            <button type="button" class="work-slider__btn work-slider__btn--next" aria-controls="work-slider-viewport" aria-label="Next slide">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+          <aside class="work-slider__copy-panel" id="work-slider-copy-panel" aria-hidden="true">
+            <div class="work-slider__copy-panel__inner" role="region" aria-labelledby="work-slider-copy-title">
+              <h3 class="work-slider__copy-panel__title" id="work-slider-copy-title"></h3>
+              <div class="work-slider__copy-panel__scroll">
+                <div class="work-slider__copy-panel__prose"></div>
+              </div>
+              <p class="work-slider__copy-panel__foot">Move away or Esc to close · click a slide to open the project site</p>
+            </div>
+          </aside>
+        </div>
+        <div class="work-slider__dots" role="tablist" aria-label="Choose slide">
+          <button type="button" class="work-slider__dot" role="tab" aria-selected="true" aria-controls="work-slide-0" id="work-dot-0" tabindex="0" aria-label="Slide 1: Music App Design"></button>
+          <button type="button" class="work-slider__dot" role="tab" aria-selected="false" aria-controls="work-slide-1" id="work-dot-1" tabindex="-1" aria-label="Slide 2: Ask Steve"></button>
+          <button type="button" class="work-slider__dot" role="tab" aria-selected="false" aria-controls="work-slide-2" id="work-dot-2" tabindex="-1" aria-label="Slide 3: Brand Identity"></button>
+        </div>
+              </div>
+              </div>
+            </div>
+            <div
+              id="work-animations-panel"
+              class="work-showcase__projects-panel work-showcase__animations-panel"
+              aria-labelledby="work-animations-toggle"
+              data-animations-panel
+              hidden>
+              <div class="work-projects-panel__main">
+                <p class="work-showcase__hint">After Effects clips — choose a video from the list on the right.</p>
+                <section
+                  id="dashboard-animations-playlist"
+                  class="animations-playlist animations-playlist--dashboard"
+                  data-animations-playlist
+                  aria-label="After Effects video playlist">
+                  <div class="animations-playlist__shell">
+                    <div class="animations-playlist__player-panel">
+                      <div class="animations-playlist__frame">
+                        <video
+                          class="animations-playlist__video"
+                          controls
+                          playsinline
+                          preload="metadata"
+                          aria-label="Animations video preview"></video>
+                      </div>
+                      <p class="animations-playlist__status visually-hidden" aria-live="polite" aria-atomic="true"></p>
+                    </div>
+                    <div class="animations-playlist__list-panel">
+                      <p class="animations-playlist__list-label">Clips · A-Z</p>
+                      <ol class="animations-playlist__list"></ol>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <div
+              id="work-freelance-panel"
+              class="work-showcase__projects-panel work-showcase__freelance-panel"
+              aria-labelledby="work-freelance-toggle"
+              data-freelance-panel
+              hidden>
+              <div class="work-projects-panel__main">
+                <p class="work-showcase__hint">Freelance motion and promotional video work — select the image to open the media player.</p>
+                <div class="work-showcase__freelance-layout">
+                  <button
+                    type="button"
+                    class="freelance-feature__frame freelance-feature__frame--button"
+                    data-freelance-reveal
+                    aria-expanded="false"
+                    aria-controls="freelance-player-deck">
+                    <img
+                      class="freelance-feature"
+                      src="images/freelance.png"
+                      alt="Freelance design showcase"
+                      width="1200"
+                      height="800"
+                      decoding="async">
+                    <span class="freelance-feature__action">Open media deck</span>
+                  </button>
+                  <section
+                    id="freelance-player-deck"
+                    class="freelance-player sf-hud-corners"
+                    data-freelance-player
+                    data-freelance-player-shell
+                    aria-label="Freelance video player"
+                    hidden>
+                    <div class="freelance-player__media-panel">
+                      <div class="freelance-player__screen sf-hud-corners">
+                        <video
+                          class="freelance-player__video"
+                          controls
+                          playsinline
+                          preload="metadata"
+                          aria-label="Freelance video preview"></video>
+                      </div>
+                      <div class="freelance-player__controls" aria-label="Choose freelance video">
+                        <button type="button" class="freelance-player__nav freelance-player__nav--prev" aria-label="Previous video">&lsaquo;</button>
+                        <ol class="freelance-player__playlist"></ol>
+                        <button type="button" class="freelance-player__nav freelance-player__nav--next" aria-label="Next video">&rsaquo;</button>
+                      </div>
+                    </div>
 
-      <div class="grid-col-third">
-        <nav>
-          <h2>Portfolio</h2>
-          <ul>
-            <li><a href="#Music App Design">Music App Design</a></li>
-            <li><a href="#Ask Steve">Ask Steve</a></li>
-            <li><a href="#Brand Identity/Banking Prototype">Brand Identity/Banking Prototype</a></li>
-            <li><a href="#Links">Links to my notion blog & my socials</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="grid-col-twoThirds">
-        <p class="large">I’m an illustrator & motion graphic designer studying digital design. My goal is to combine the
-          skills I’ve attained with the new skills I’m learning in university. Designing user interfaces in todays
-          modern era that not only engage but also connect with the user on an emotional level to bring the best user
-          experience possible. </p>
-          <footer>
-            
-          </footer>
-
-        <h2 id="Music App Design">Music App Design</h2>
-
-        <a href="https://slimdavy81.github.io/Dees-Portfolio/music.html"title="click to learn more"><img src="images/MusicApp.jpg" alt="Music App Design"></a>
-        <p style="color: lightgreen">Click on image above for more on Project</p>
-        <p>This design project focused on developing a mobile music application. The real goal for me was to create an
-          engaging user friendly interface that allows users to easily discover, play and organise their music enhancing
-          their overall listening experience based on my favourite genre - Rock. The project aimed to balance an
-          aesthetic appeal based on that particular theme emphasising smooth navigation.</p>
-
-        <p>
-          The real problem with this project was to create something that is keeping up with modern trends in UI while
-          leaning to a rock & roll theme. To manage this problem I researched into a lot of Grunge/ Pop Rock imagery and
-          tried to find a nice balance of appropriate graphics and fonts that didn’t give the dark vibe that
-          unfortunately comes hand in hand with this type of music. The target audience in this case was very easy, I
-          knew it was an application themed around my preferred style of music so I approached this design process on
-          something I would like to use.</p>
-
-        <p>
-          My role was to create this application from sketches on layouts, creating low fi to hi fidelity wireframes
-          right through to component, graphic creation, fonts and colour choice to create the best flow possible. Most
-          modern UI’s in music apps are very similar but I feel I achieved an original concept while keeping up with the
-          trends. The real constraints with this project was the time frame. With More time I feel this design could
-          have been improved but considering it was a 6 week project I was happy with the outcome.
-
-          My process was very simple, research modern applications, sketch possible graphics and elements Id like. then
-          in Figma I test different layouts to see which worked best, trial and error. With this project I learned
-          the value of creating wireframes. I always jumped straight into the final design and went with it; but learning
-          and conceptualising the ideas first proved to be very benificial with the time constraints</p>
-<footer>
-
-</footer>
-        <h2 id="Ask Steve">Ask Steve</h2>
-        <a href="https://slimdavy81.github.io/Dees-Portfolio/Smartwatch.html"title="click to learn more"><img src="images/Smartwatch.jpg" alt="Smartwatch UI"></a>
-        <p style="color: lightgreen">Click on image above for more on Project</p>
-        <p>This design project focused on developing a Smartwatch application. The main goal for me was to try and
-          utilise my Illustration skills to create a fun user friendly Interface that could be used as a translation
-          device with a companion application that records your words and phrases to help you learn the chosen language.
-          </p>
-
-          <p>There was a few problems with this project I had to overcome. The first was the time frame, we had three
+                    <aside class="freelance-player__description" aria-live="polite">
+                      <p class="home-dashboard__tile-kicker">Now Playing</p>
+                      <h3 class="freelance-player__title"></h3>
+                      <p class="freelance-player__summary"></p>
+                      <dl class="freelance-player__meta">
+                        <div>
+                          <dt>Type</dt>
+                          <dd>Freelance video</dd>
+                        </div>
+                        <div>
+                          <dt>Folder</dt>
+                          <dd>Freelance</dd>
+                        </div>
+                      </dl>
+                    </aside>
+                  </section>
+                </div>
+              </div>
+            </div>
+      <template id="slider-body-0">
+        <div class="work-slider__copy-template">
+          <p>This design project focused on developing a mobile music application. The real goal for me was to create an
+            engaging user friendly interface that allows users to easily discover, play and organise their music enhancing
+            their overall listening experience based on my favourite genre — rock. The project aimed to balance an
+            aesthetic appeal based on that particular theme emphasising smooth navigation.</p>
+          <p>The real problem with this project was to create something that is keeping up with modern trends in UI while
+            leaning to a rock &amp; roll theme. To manage this problem I researched into a lot of grunge / pop rock imagery and
+            tried to find a nice balance of appropriate graphics and fonts that didn’t give the dark vibe that
+            unfortunately comes hand in hand with this type of music. The target audience in this case was very easy; I
+            knew it was an application themed around my preferred style of music so I approached this design process on
+            something I would like to use.</p>
+          <p>My role was to create this application from sketches on layouts, creating low fi to hi fidelity wireframes
+            right through to component, graphic creation, fonts and colour choice to create the best flow possible. Most
+            modern UI’s in music apps are very similar but I feel I achieved an original concept while keeping up with the
+            trends. The real constraints with this project was the time frame. With more time I feel this design could
+            have been improved but considering it was a 6 week project I was happy with the outcome.</p>
+          <p>My process was very simple: research modern applications, sketch possible graphics and elements I’d like; then
+            in Figma I test different layouts to see which worked best — trial and error. With this project I learned
+            the value of creating wireframes. I always jumped straight into the final design and went with it; but learning
+            and conceptualising the ideas first proved to be very beneficial with the time constraints.</p>
+        </div>
+      </template>
+      <template id="slider-body-1">
+        <div class="work-slider__copy-template">
+          <p>This design project focused on developing a smartwatch application. The main goal for me was to try and
+            utilise my illustration skills to create a fun user friendly interface that could be used as a translation
+            device with a companion application that records your words and phrases to help you learn the chosen language.</p>
+          <p>There were a few problems with this project I had to overcome. The first was the time frame — we had three
             weeks to research, design and create a speculative application. Another was obviously the restraints of
             designing a UI within such a small space. Having the ability to create vector based graphics really
-            benefited me in this, scaling without distortion.
-
-            My role was to create this application from sketches on layouts, creating components, graphic creation,
-            fonts
-            and colour choice to create the best flow possible. Most modern UI’s in Smartwatch apps are very similar in
+            benefited me in this, scaling without distortion.</p>
+          <p>My role was to create this application from sketches on layouts, creating components, graphic creation,
+            fonts and colour choice to create the best flow possible. Most modern UI’s in smartwatch apps are very similar in
             the sense they are focused on health and well being. I took this as an opportunity to create something a
-            little different.
-
-            From previous projects I learned a great way to make an emotional or nostalgic connection with a wide audience
-            is to create a character people will remember. Essentially this entire concept was based on the Smartphone app
-            Duolingo. With their character, they chose a bird and I did wrestle with a few different characters but I
+            little different.</p>
+          <p>From previous projects I learned a great way to make an emotional or nostalgic connection with a wide audience
+            is to create a character people will remember. Essentially this entire concept was based on the smartphone app
+            Duolingo. With their character they chose a bird and I did wrestle with a few different characters but I
             ultimately ended on settling for an owl. This decision came from my love of a Disney character from my
-            childhood that I still love. Archimedes - the highly educated owl.</p>
-          </p>
-
-          <figure class="quote">
-            <blockquote>
-              <p>"I love the graphic medium in all it's forms. My passion is with animation and illustration but making
-                User Interfaces better and easier with these skills is where the magic happens"
-            </blockquote>
-            <figcaption>
-              <p>-David Gamble</p>
-            </figcaption>
-          </figure>
-          <footer>
-
-          </footer>
-
-          <h2 id="Brand Identity/Banking Prototype">Brand Identity/Banking Prototype</h2>
-          <a href="https://slimdavy81.github.io/Dees-Portfolio/Branding.html"title="click to learn more"><img src="images/Stellar.jpg" alt="Stellar Brand"></a>
-          <p style="color: lightgreen">Click on image above for more on Project</p>
-          <p>Most definitely my biggest and most in depth design project of my first year studying Digital Design. The
-            assignment was to create a working prototype of an online banking application aimed at 16 - 18 year olds.
-            Accompanied with promotional material and a landing page. This covered us going into great detail of brand
-            identity, colour psychology, Logos, nametags and even developing our own brand guidelines.</p>
-
+            childhood that I still love: Archimedes — the highly educated owl.</p>
+        </div>
+      </template>
+      <template id="slider-body-2">
+        <div class="work-slider__copy-template">
+          <p>Most definitely my biggest and most in depth design project of my first year studying digital design. The
+            assignment was to create a working prototype of an online banking application aimed at 16–18 year olds,
+            accompanied with promotional material and a landing page. This covered us going into great detail of brand
+            identity, colour psychology, logos, nametags and even developing our own brand guidelines.</p>
           <p>There was a whole host of issues with this project. As a mature student I was reluctant in carrying out the
             research with the target age group. Thankfully though I was able to gather enough information from a few
-            students in my class I had gotten friendly with. Then there was the design of the logo of my brand itself, I
+            students in my class I had gotten friendly with. Then there was the design of the logo of my brand itself; I
             wanted to create something that embodied the impression of being part of something bigger than ourselves. I
-            was confident that my brand name was perfect for this - Stellar, but when it came to the design of the logo
+            was confident that my brand name was perfect for this — Stellar — but when it came to the design of the logo
             I honestly hit a brick wall. I tried multiple variations of stars and even dabbled in star signs and pop
-            culture nostalgia but everything I came up with looked bland and generic. This did have a knock on effect
+            culture nostalgia but everything I came up with looked bland and generic. This did have a knock-on effect
             with the project and I felt I was starting to fall behind with the other elements required for the module.
-            In the end My lecturer simply took my latest attempt and made a few simple changes and just like that I had
+            In the end my lecturer simply took my latest attempt and made a few simple changes and just like that I had
             my design. From then on almost everything else seemed to fall into place and with a few extra hours I was able
             to catch up and complete it on time.</p>
-
-          <p>My role in creating this application was covering everything from research, deciding my font & colour
+          <p>My role in creating this application was covering everything from research, deciding my font &amp; colour
             choice right through to the layout and design of the prototype. Again through trial and error and looking
             into bank brand UI’s I sketched out concepts on layouts, creating low fi to hi fidelity wireframes. One of
             the main things I learned from this project was understanding how brands are developed to create an
             emotional or nostalgic connection with people. I find myself looking all around me now and getting why
-            designers created their brands in the way they did.
-
-            This was a great project and I feel I got a lot of valuable knowledge, not just about branding but design in
+            designers created their brands in the way they did.</p>
+          <p>This was a great project and I feel I got a lot of valuable knowledge, not just about branding but design in
             general. Technically this pushed me to create and understand flows within UI’s for better user experiences and I
-            even learned through a few tutorial how to create interactive component sets and image sliders. I levelled
+            even learned through a few tutorials how to create interactive component sets and image sliders. I levelled
             up with Figma for sure.</p>
+        </div>
+      </template>
 
+          </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-          <h2 id="Links">Links to my notion blog & my socials</h2>
-          <ul>
-
-            <li>My notion blog from Ulster University <a
-                href="https://www.notion.so/Home-1522c93c8615806f840acb5aeed9a247">website</a>
-            </li>
-
-            <li>My Instagram page with my illustrations and animations <a
-                href="https://www.instagram.com/spideyshoes69/">website</a></li>
-
-            <li>A touch of After Effects <a
-                href="https://www.figma.com/proto/LRHSjhxnABhJ50t8KyQLAv/Portfolio?node-id=2094-22&t=bykfOOkTMLXyjtCx-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2004%3A118">Website</a>
-                
-             <li>My latest Illustrations I did for fun <a
-                href="https://www.figma.com/proto/LRHSjhxnABhJ50t8KyQLAv/Portfolio?node-id=2095-400&starting-point-node-id=2004%3A118">website</a></li>
+    <div class="container home-page-grid">
+      <aside class="grid-col-third sidebar" aria-label="Section navigation">
+        <nav class="side-nav">
+          <h2 class="side-nav__title">Index</h2>
+          <ul class="side-nav__list">
+            <li><a href="#other-projects">Other Projects</a></li>
+            <li><a href="#graphic-design">Graphic Design</a></li>
+            <li><a href="#blender">Blender</a></li>
+            <li><a href="#links">Blog &amp; socials</a></li>
           </ul>
+        </nav>
+      </aside>
+
+      <div class="grid-col-twoThirds content">
+        <p class="intro large">I’m an illustrator &amp; motion graphic designer studying digital design. My goal is to combine the
+          skills I’ve attained with the new skills I’m learning in university — designing user interfaces in today’s
+          modern era that not only engage but also connect with the user on an emotional level to bring the best user
+          experience possible.</p>
+      </div>
+
+      <div class="grid-col-twoThirds content home-page-grid__quotes">
+        <div class="home-creative-statement" id="favourites-anchor">
+          <div class="home-creative-statement__copy">
+            <p class="intro">My strongest work sits where graphic art, illustration, and animation meet. I’m especially drawn to bold character-led visuals, expressive composition, motion timing, and design that creates an immediate emotional connection. I’m keen to keep learning across digital design, UI, branding, and motion graphics so I can keep developing work that feels polished, purposeful, and visually memorable.</p>
+          </div>
+          <a class="home-phoenix-feature" href="#favourites-overlay" aria-label="Open favourite artwork collage" data-favourites-trigger>
+            <img
+              class="home-phoenix-feature__img"
+              src="portfolio/phoenix.jpg"
+              alt="Phoenix illustration"
+              width="1200"
+              height="800"
+              decoding="async">
+            <span class="home-phoenix-feature__label" aria-hidden="true">Favourites</span>
+          </a>
+        </div>
+        <figure class="quote">
+          <blockquote>
+            <p>“I love the graphic medium in all its forms. My passion is with animation and illustration but making
+              user interfaces better and easier with these skills is where the magic happens.”</p>
+          </blockquote>
+          <figcaption>— David Gamble</figcaption>
+        </figure>
+      </div>
+
+
+      <div class="home-page-grid__project-pair" id="other-projects">
+        <header class="home-page-grid__project-pair-header">
+          <h2 class="smarthome-project__title">Other Projects</h2>
+        </header>
+        <section
+          class="home-page-grid__smarthome smarthome-project"
+          data-smarthome-deck
+          aria-label="Smarthome 2076 project">
+          <header class="smarthome-project__header">
+            <p class="smarthome-project__sub" id="smarthome-project-title">Smarthome 2076</p>
+          </header>
+          <div class="smarthome-project__box sf-hud-corners">
+            <div class="smarthome-deck" aria-label="Smarthome 2076 project previews">
+              <div class="smarthome-deck__stack" tabindex="-1">
+                <div class="smarthome-deck__panel sf-hud-corners" aria-hidden="true"></div>
+                <div class="smarthome-deck__caption" id="smarthome-caption" aria-live="polite">
+                  <div class="smarthome-deck__caption-inner">
+                    <div class="smarthome-deck__caption-text">
+                      <p>This was a design project designed for an elderly person 50 years from now. The user is essentially living in an empty room with moving furniture and lighting capabilities built into the walls and floor. With the dashboard I created with HTML &amp; JavaScript with the help of Cursor.</p>
+                      <p>The user has full control over which room and configuration they would like this space to be. It also comes with an AI assistant to adjust the temperature, give updates on the security, and the power outage he would be using.</p>
+                    </div>
+                    <a
+                      class="smarthome-deck__prototype-link"
+                      href="https://slimdavy81.github.io/smarthome2076/"
+                      target="_blank"
+                      rel="noopener noreferrer">Prototype</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="home-page-grid__coffee smarthome-project smarthome-project--mirror"
+          data-smarthome-deck
+          data-base="Coffee/"
+          data-images="dashboard.jpg|ingredientchart.jpg|productivitychart.jpg|Untitled-3.jpg"
+          aria-label="Coffee Dashboard project">
+          <header class="smarthome-project__header">
+            <p class="smarthome-project__sub" id="coffee-project-title">Coffee Dashboard</p>
+          </header>
+          <div class="smarthome-project__box sf-hud-corners">
+            <div class="smarthome-deck" aria-label="Coffee Dashboard project previews">
+              <div class="smarthome-deck__stack" tabindex="-1">
+                <div class="smarthome-deck__panel sf-hud-corners" aria-hidden="true"></div>
+                <div class="smarthome-deck__caption" id="coffee-caption" aria-live="polite">
+                  <div class="smarthome-deck__caption-inner">
+                    <img
+                      class="smarthome-deck__caption-logo"
+                      src="Coffee/coffeelogo.jpg"
+                      alt="Coffee Dashboard logo"
+                      width="640"
+                      height="640"
+                      decoding="async">
+                    <div class="smarthome-deck__caption-text">
+                      <p>The art of information. This project was created entirely in Figma. It explains through charts and graphs the correlation between the amount of coffee I consumed over a week with the amount of Uni work I got done.</p>
+                    </div>
+                    <a
+                      class="smarthome-deck__prototype-link"
+                      href="https://www.figma.com/proto/tPAcyZagXAp0u3RuudTEX1/Coffee-Dashboard?node-id=22-49"
+                      target="_blank"
+                      rel="noopener noreferrer">Prototype</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section
+        id="graphic-design"
+        class="home-page-grid__graphic-design graphic-design-band"
+        aria-labelledby="graphic-design-title">
+        <h2 class="graphic-design-band__title" id="graphic-design-title">Graphic Design</h2>
+        <div
+          class="graphic-design-carousel"
+          data-graphic-design-carousel
+          aria-roledescription="carousel">
+          <p id="graphic-design-carousel-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
+          <div class="graphic-design-carousel__viewport" aria-label="Graphic design work samples">
+            <div class="graphic-design-carousel__track"></div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="blender"
+        class="home-page-grid__blender blender-band"
+        aria-labelledby="blender-title">
+        <h2 class="blender-band__title" id="blender-title">Blender</h2>
+        <div class="blender-deck" data-blender-deck aria-label="Blender model images with video player">
+          <button class="blender-deck__video-tab" type="button" aria-expanded="false" aria-controls="blender-videos-panel" data-blender-view="videos">Videos</button>
+
+          <div class="blender-deck__model-stack" aria-label="Blender model images">
+            <figure class="blender-deck__model-card blender-deck__model-card--one" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/abstract.jpg" alt="Abstract Blender model" loading="lazy" decoding="async">
+              <img class="blender-deck__render-image" src="Blender/abstract.jpg" alt="Abstract Blender render" loading="lazy" decoding="async">
+            </figure>
+            <figure class="blender-deck__model-card blender-deck__model-card--two" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/glassmodel.jpg" alt="Glass Blender model" loading="lazy" decoding="async">
+              <img class="blender-deck__render-image" src="Blender/Glassrender.jpg" alt="Glass Blender render" loading="lazy" decoding="async">
+            </figure>
+            <figure class="blender-deck__model-card blender-deck__model-card--three" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/vortex.jpg" alt="Vortex Blender model" loading="lazy" decoding="async">
+              <span class="blender-deck__render-pair" aria-hidden="true">
+                <img class="blender-deck__render-image" src="Blender/vortexclr.jpg" alt="">
+                <img class="blender-deck__render-image" src="Blender/vortextopview.jpg" alt="">
+              </span>
+              <span class="visually-hidden">Vortex Blender render and top view render</span>
+            </figure>
+            <figure class="blender-deck__model-card blender-deck__model-card--four" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/waterballmodel.jpg" alt="Water ball Blender model" loading="lazy" decoding="async">
+              <img class="blender-deck__render-image" src="Blender/waterball render.jpg" alt="Water ball Blender render" loading="lazy" decoding="async">
+            </figure>
+            <figure class="blender-deck__model-card blender-deck__model-card--five" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/pumkinmodel.jpg" alt="Pumpkin Blender model" loading="lazy" decoding="async">
+              <img class="blender-deck__render-image" src="Blender/pumpkin.jpg" alt="Pumpkin Blender render" loading="lazy" decoding="async">
+            </figure>
+            <figure class="blender-deck__model-card blender-deck__model-card--six" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/swordmodel.jpg" alt="Sword Blender model" loading="lazy" decoding="async">
+              <img class="blender-deck__render-image" src="Blender/swordtexture.jpg" alt="Sword Blender render" loading="lazy" decoding="async">
+            </figure>
+            <figure class="blender-deck__model-card blender-deck__model-card--seven" tabindex="0">
+              <img class="blender-deck__model" src="Blender/models/sword&amp;stone model.jpg" alt="Sword and stone Blender model" loading="lazy" decoding="async">
+              <img class="blender-deck__render-image" src="Blender/renderimage.jpg" alt="Sword and stone Blender render" loading="lazy" decoding="async">
+            </figure>
+          </div>
+
+          <div class="blender-deck__viewer" id="blender-videos-panel" hidden data-blender-panel="videos">
+            <div class="blender-video-player">
+              <video class="blender-video-player__media" controls playsinline preload="metadata" aria-label="Selected Blender video" data-blender-video-player>
+                <source src="Blender/vids/abstract1_1.mp4" type="video/mp4">
+              </video>
+              <div class="blender-video-player__playlist" aria-label="Blender video playlist">
+                <button class="blender-video-player__clip is-active" type="button" data-video-src="Blender/vids/abstract1_1.mp4" data-render-src="Blender/abstract.jpg" data-render-alt="Abstract Blender render" aria-current="true">Abstract</button>
+                <button class="blender-video-player__clip" type="button" data-video-src="Blender/vids/8ball.mp4" data-render-src="Blender/waterball render.jpg" data-render-alt="Ball Blender render">8 Ball</button>
+                <button class="blender-video-player__clip" type="button" data-video-src="Blender/vids/0001-0127.mp4" data-render-src="Blender/vortextopview.jpg" data-render-alt="Vortex Blender top view render">Frames</button>
+                <button class="blender-video-player__clip" type="button" data-video-src="Blender/vids/vortex.mkv" data-render-src="Blender/vortexclr.jpg" data-render-alt="Vortex Blender render">Vortex</button>
+                <button class="blender-video-player__clip" type="button" data-video-src="Blender/vids/glass.mp4" data-render-src="Blender/Glassrender.jpg" data-render-alt="Glass Blender render">Glass</button>
+                <button class="blender-video-player__clip" type="button" data-video-src="Blender/vids/render1.mp4" data-render-src="Blender/renderimage.jpg" data-render-alt="Sword and stone Blender render">Render</button>
+                <button class="blender-video-player__play-all" type="button" data-blender-play-all aria-pressed="false">Play all</button>
+              </div>
+              <figure class="blender-video-player__render">
+                <img src="Blender/abstract.jpg" alt="Abstract Blender render" data-blender-video-render loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid-col-twoThirds content home-page-grid__after">
+        <figure class="quote">
+          <blockquote>
+            <p>“Learning &amp; knowledge is the real power. If you work hard and truly believe, you can accomplish
+              anything.”</p>
+          </blockquote>
+          <figcaption>— David Gamble</figcaption>
+        </figure>
+
+        <section class="links-block" id="links">
+          <h2>Blog &amp; socials</h2>
+          <ul class="links-list">
+            <li><a href="https://www.notion.so/Home-1522c93c8615806f840acb5aeed9a247" rel="noopener noreferrer">Notion — Ulster University blog</a></li>
+            <li><a href="https://www.instagram.com/spideyshoes69/" rel="noopener noreferrer">Instagram — illustrations &amp; animation</a></li>
+            <li><a href="https://www.figma.com/proto/LRHSjhxnABhJ50t8KyQLAv/Portfolio?node-id=2094-22&amp;t=bykfOOkTMLXyjtCx-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=2004%3A118" rel="noopener noreferrer">Figma — After Effects work</a></li>
+            <li><a href="https://www.figma.com/proto/LRHSjhxnABhJ50t8KyQLAv/Portfolio?node-id=2095-400&amp;starting-point-node-id=2004%3A118" rel="noopener noreferrer">Figma — interactive illustration deck</a></li>
           </ul>
+        </section>
       </div>
     </div>
+
+    <section class="footer-banner container" aria-label="Footer animation">
+      <div class="footer-banner__frame">
+        <video controls muted playsinline preload="metadata" aria-label="Cyber footer animation with optional audio" data-play-when-visible>
+          <source src="Cyber.mp4" type="video/mp4">
+        </video>
+        <div class="footer-banner__gif-row" role="group" aria-label="Inspire and Dream animations">
+          <img src="Media/Inspire.gif" alt="Inspire animation" loading="lazy" decoding="async">
+          <img src="Media/dream.gif" alt="Dream animation" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cta container" aria-labelledby="contact-cta-title">
+      <p class="contact-cta__kicker">Work placements · Freelance clients</p>
+      <h2 class="contact-cta__title" id="contact-cta-title">Interested in working together?</h2>
+      <a class="contact-cta__button" href="#contact-overlay">Contact me</a>
+    </section>
   </main>
-  <div class="container grid">
 
-      <div>
-        <image src=Media/footer.gif>
+  <div class="favourites-transition" aria-hidden="true" data-favourites-transition>
+    <video class="favourites-transition__video" muted playsinline preload="metadata" data-favourites-transition-video>
+      <source src="Scorpion.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <section
+    id="favourites-overlay"
+    class="favourites-overlay"
+    aria-labelledby="favourites-overlay-title">
+    <div class="favourites-overlay__inner">
+      <header class="favourites-overlay__header">
+        <div>
+          <p class="home-dashboard__tile-kicker">Illustration archive</p>
+          <h2 id="favourites-overlay-title">Favourites</h2>
+        </div>
+        <a class="favourites-overlay__close" href="#favourites-anchor" aria-label="Close favourites collage">Close</a>
+      </header>
+
+      <div class="favourites-collage" aria-label="Animated collage of favourite artwork">
+        <div class="favourites-collage__stage">
+          <figure class="favourites-collage__card favourites-collage__card--one">
+            <img src="favourites/phoenix.jpg" alt="Phoenix illustration" width="1200" height="800" decoding="async">
+          </figure>
+          <figure class="favourites-collage__card favourites-collage__card--two">
+            <img src="favourites/BLincolour.jpg" alt="Colour illustration favourite" width="1200" height="800" decoding="async">
+          </figure>
+          <figure class="favourites-collage__card favourites-collage__card--three">
+            <img src="favourites/neon1.jpg" alt="Neon artwork favourite" width="1200" height="800" decoding="async">
+          </figure>
+          <figure class="favourites-collage__card favourites-collage__card--four">
+            <img src="favourites/Scorpion.jpg" alt="Scorpion artwork favourite" width="1200" height="800" decoding="async">
+          </figure>
+          <figure class="favourites-collage__card favourites-collage__card--five">
+            <img src="favourites/BooBo.jpg" alt="Character artwork favourite" width="1200" height="800" decoding="async">
+          </figure>
+          <figure class="favourites-collage__card favourites-collage__card--six">
+            <img src="favourites/SMMikey.jpg" alt="Illustrated portrait favourite" width="1200" height="800" decoding="async">
+          </figure>
+        </div>
       </div>
     </div>
-  <footer>
-    <div class="container">
-      <p>The content on this page is developed by David Gamble. I'm but a humble student of the arts. Learning &
-        knowledge is the real power. If you work hard and truly believe you can accomplish anything.
-      </p>
-  </footer>
+  </section>
 
-  </div>
+  <section
+    id="contact-overlay"
+    class="contact-overlay"
+    aria-labelledby="contact-overlay-title">
+    <div class="contact-overlay__panel">
+      <header class="contact-overlay__header">
+        <div>
+          <p class="home-dashboard__tile-kicker">Contact</p>
+          <h2 id="contact-overlay-title">Send a project message</h2>
+        </div>
+        <a class="contact-overlay__close" href="#main" aria-label="Close contact form">Close</a>
+      </header>
+
+      <form class="contact-form" data-contact-form>
+        <label class="contact-form__field">
+          <span>Your name</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Name">
+        </label>
+
+        <label class="contact-form__field">
+          <span>Your email</span>
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+        </label>
+
+        <label class="contact-form__field">
+          <span>Subject</span>
+          <input type="text" name="subject" value="Portfolio enquiry">
+        </label>
+
+        <label class="contact-form__field contact-form__field--message">
+          <span>Message</span>
+          <textarea name="message" rows="10" placeholder="Tell me about the work placement, freelance project, timeline, and the best way to reply." required></textarea>
+        </label>
+
+        <div class="contact-form__actions">
+          <button class="contact-form__submit" type="submit">Open email draft</button>
+          <a class="contact-form__email" href="mailto:davidlgambledesigns@outlook.com">davidlgambledesigns@outlook.com</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>The content on this page is developed by David Gamble. I’m but a humble student of the arts.</p>
+    </div>
+  </footer>
 </body>
 
 </html>
