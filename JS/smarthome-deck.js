@@ -12,6 +12,7 @@
   ];
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var mobileLinks = window.matchMedia("(max-width: 720px)");
   var SLOTS = ["logo", "dashboard", "home", "layouts"];
 
   function labelFromFile(file) {
@@ -49,6 +50,8 @@
     if (!stack) return;
 
     var base = root.getAttribute("data-base") || "Smarthome/";
+    var prototypeLink = root.querySelector(".smarthome-deck__prototype-link");
+    var prototypeHref = prototypeLink ? prototypeLink.href : "";
     var spread = false;
 
     function srcFor(file) {
@@ -78,6 +81,34 @@
       card.appendChild(img);
       stack.appendChild(card);
     });
+
+    function applyMobileLinkState() {
+      if (mobileLinks.matches && prototypeHref) {
+        stack.setAttribute("role", "link");
+        stack.setAttribute("aria-label", "Open " + (root.getAttribute("aria-label") || "project") + " prototype");
+        stack.classList.add("smarthome-deck__stack--mobile-link");
+      } else {
+        stack.removeAttribute("role");
+        stack.removeAttribute("aria-label");
+        stack.classList.remove("smarthome-deck__stack--mobile-link");
+      }
+    }
+
+    stack.addEventListener("click", function (e) {
+      if (!mobileLinks.matches || !prototypeHref) return;
+      if (e.target.closest && e.target.closest("a")) return;
+      window.open(prototypeHref, "_blank", "noopener");
+    });
+
+    stack.addEventListener("keydown", function (e) {
+      if (!mobileLinks.matches || !prototypeHref) return;
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      window.open(prototypeHref, "_blank", "noopener");
+    });
+
+    mobileLinks.addEventListener("change", applyMobileLinkState);
+    applyMobileLinkState();
 
     if (reduced.matches) {
       runSpread();

@@ -19,6 +19,7 @@
   var touchStartX = null;
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var resizeTimer = null;
+  var mobilePrototypeLinks = window.matchMedia("(max-width: 720px)");
 
   function slideTitle(i) {
     var slide = slides[i];
@@ -92,6 +93,38 @@
     if (!statusEl) return;
     statusEl.textContent =
       "Slide " + (index + 1) + " of " + total + ": " + slideTitle(index);
+  }
+
+  function applyCardTargets() {
+    var usePrototype = mobilePrototypeLinks.matches;
+
+    slides.forEach(function (slide) {
+      var card = slide.querySelector(".work-slider__card");
+      if (!card) return;
+
+      if (!card.dataset.caseStudyHref) {
+        card.dataset.caseStudyHref = card.getAttribute("href") || "";
+      }
+
+      var action = card.querySelector(".work-slider__action");
+      var nextHref = usePrototype && card.dataset.prototypeHref
+        ? card.dataset.prototypeHref
+        : card.dataset.caseStudyHref;
+
+      if (nextHref) {
+        card.setAttribute("href", nextHref);
+      }
+
+      if (usePrototype && card.dataset.prototypeHref) {
+        card.setAttribute("target", "_blank");
+        card.setAttribute("rel", "noopener noreferrer");
+        if (action) action.textContent = "Open prototype ->";
+      } else {
+        card.removeAttribute("target");
+        card.setAttribute("rel", "noopener noreferrer");
+        if (action) action.textContent = "View project ->";
+      }
+    });
   }
 
   function goTo(i) {
@@ -173,7 +206,9 @@
   });
 
   window.addEventListener("resize", scheduleLayout);
+  mobilePrototypeLinks.addEventListener("change", applyCardTargets);
 
+  applyCardTargets();
   applyMotionPreference();
   updateButtons();
   updateDots();

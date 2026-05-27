@@ -500,3 +500,28 @@ span.cc_title{
 	top:auto;
 	left:auto;
 }
+
+@media (max-width:720px){
+	body.gallery-index{
+		padding-top:6px;
+		padding-bottom:28px;
+	}
+
+	body.gallery-index #cc_menu.cc_menu{
+		margin-left:0.35rem;
+	}
+
+	.title{
+		right:4px;
+		top:6px;
+		width:calc(70px * var(--cc-scale, 1));
+		font-size:20px;
+		letter-spacing:0.24em;
+	}
+
+	span.reference{
+		right:0.5rem;
+		bottom:0.35rem;
+		font-size:10px;
+	}
+}

@@ -14,6 +14,12 @@
     baseMenuW: 700,
     minScale: 0.52,
   };
+  var PHONE_LAYOUT = {
+    padV: 40,
+    padH: 76,
+    minScale: 0.38,
+    maxScale: 0.46,
+  };
 
   function readPrefs() {
     try {
@@ -37,7 +43,7 @@
   }
 
   function computeScale(prefs) {
-    return Math.max(
+    var fit = Math.max(
       prefs.minScale,
       Math.round(
         Math.min(
@@ -46,6 +52,7 @@
         ) * 1000
       ) / 1000
     );
+    return prefs.maxScale ? Math.min(fit, prefs.maxScale) : fit;
   }
 
   function applyFitScale(body) {
@@ -54,11 +61,13 @@
     }
 
     var prefs = readPrefs();
-    var scale = computeScale(prefs);
+    var phone = window.matchMedia("(max-width: 720px)").matches;
+    var effectivePrefs = phone ? Object.assign({}, prefs, PHONE_LAYOUT) : prefs;
+    var scale = computeScale(effectivePrefs);
 
     body.style.setProperty("--cc-scale", String(scale));
-    body.style.setProperty("--cc-chrome-v", prefs.padV + "px");
-    body.style.setProperty("--cc-chrome-h", prefs.padH + "px");
+    body.style.setProperty("--cc-chrome-v", effectivePrefs.padV + "px");
+    body.style.setProperty("--cc-chrome-h", effectivePrefs.padH + "px");
 
     savePrefs(Object.assign({}, prefs, { lastScale: scale }));
 
