@@ -12,10 +12,10 @@
   var IMAGES = [
     { file: "dreaming of electric sheep.jpg", label: "Dreaming of electric sheep" },
     { file: "Propaganda2.jpg", label: "Propaganda design" },
-    { file: "_6160897359.jpg", label: "Graphic design work" },
-    { file: "_5327703487.jpg", label: "Graphic design work" },
-    { file: "_4076768485.jpg", label: "Graphic design work" },
-    { file: "_6427815835.jpg", label: "Graphic design work" },
+    { file: "FTpaints.jpg", label: "FT Paints graphic design" },
+    { file: "Seaforde Brochure.jpg", label: "Seaforde brochure design" },
+    { file: "Tattooportfolio.jpg", label: "Tattoo portfolio design" },
+    { file: "Web Design CPT.jpg", label: "Web design CPT project" },
   ];
 
   var BASE = "Graphic Design/";
@@ -34,7 +34,7 @@
   var previewIndex = -1;
 
   function srcFor(file) {
-    return BASE + encodeURIComponent(file);
+    return encodeURI(BASE + file);
   }
 
   function buildLightbox() {
