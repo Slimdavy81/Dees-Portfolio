@@ -2154,6 +2154,28 @@ a:visited:hover {
   }
 }
 
+@media (max-width: 720px) {
+  .home-dashboard__media-stack .work-showcase__animations-panel.is-open {
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .animations-playlist.animations-playlist--dashboard {
+    --ae-playlist-scroll-height: clamp(9.5rem, 36vh, 15rem);
+  }
+
+  .animations-playlist--dashboard .animations-playlist__shell {
+    gap: 0.65rem;
+  }
+
+  .animations-playlist--dashboard .animations-playlist__frame,
+  .animations-playlist--dashboard .animations-playlist__list-panel {
+    height: var(--ae-playlist-scroll-height);
+    min-height: var(--ae-playlist-scroll-height);
+    max-height: var(--ae-playlist-scroll-height);
+  }
+}
+
 .work-showcase__freelance-layout {
   display: block;
 }
@@ -4124,6 +4146,15 @@ figure.quote figcaption {
   margin-inline: auto;
 }
 
+.home-page-grid__project-pair-note {
+  margin: -0.2rem auto 0;
+  color: var(--text-muted);
+  font-family: var(--font-hud);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .home-page-grid__project-pair > .smarthome-project {
   --smarthome-scale: 1.9;
   flex: 0 1 auto;
@@ -5195,15 +5226,6 @@ figure.quote figcaption {
 @media (max-width: 720px) {
   .smarthome-project {
     --smarthome-scale: 1.24;
-  }
-
-  .smarthome-deck__stack--mobile-link {
-    cursor: pointer;
-  }
-
-  .smarthome-deck__stack--mobile-link:focus-visible {
-    outline: 2px solid var(--neon-magenta);
-    outline-offset: 4px;
   }
 }
 
