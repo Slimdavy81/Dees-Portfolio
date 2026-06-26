@@ -42,6 +42,7 @@
   <script src="JS/favourites-transition.js" defer></script>
   <script src="JS/contact-overlay.js" defer></script>
   <script src="gallery/gallery-settings.js" defer></script>
+  <script src="JS/most-recent-preview.js" defer></script>
   <script src="JS/portfolio-ui-sounds.js" defer></script>
 </head>
 
@@ -491,6 +492,49 @@
         </figure>
       </div>
 
+      <section
+        id="most-recent"
+        class="home-page-grid__most-recent home-most-recent-band"
+        aria-labelledby="most-recent-title">
+        <h2 class="home-most-recent-band__title" id="most-recent-title">Most Recent</h2>
+        <div class="home-most-recent-band__grid">
+          <figure
+            class="home-most-recent-card home-most-recent-card--bare home-most-recent-card--preview"
+            aria-labelledby="most-recent-grateful-bart-title"
+            data-preview-target="most-recent-preview-neon"
+            tabindex="0">
+            <img
+              class="home-most-recent-card__img home-most-recent-card__img--bare"
+              src="favourites/neon1.jpg"
+              alt="Grateful Bart illustration"
+              width="1200"
+              height="1200"
+              decoding="async"
+              loading="lazy">
+            <figcaption class="home-most-recent-card__meta">
+              <span class="home-most-recent-card__title" id="most-recent-grateful-bart-title">Grateful Bart</span>
+            </figcaption>
+          </figure>
+          <figure
+            class="home-most-recent-card home-most-recent-card--bare home-most-recent-card--preview"
+            aria-labelledby="most-recent-dragon-title"
+            data-preview-target="most-recent-preview-dragon"
+            tabindex="0">
+            <img
+              class="home-most-recent-card__img home-most-recent-card__img--bare"
+              src="portfolio/TheDragon.jpg"
+              alt="The Dragon — Bruce Lee tribute illustration with twin dragons"
+              width="1200"
+              height="1200"
+              decoding="async"
+              loading="lazy">
+            <figcaption class="home-most-recent-card__meta">
+              <span class="home-most-recent-card__title" id="most-recent-dragon-title">The Dragon</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
 
       <div class="home-page-grid__project-pair" id="other-projects">
         <header class="home-page-grid__project-pair-header">
@@ -776,5 +820,49 @@
       <p>The content on this page is developed by David Gamble. I’m but a humble student of the arts.</p>
     </div>
   </footer>
+
+  <div
+    id="most-recent-preview-neon"
+    class="most-recent-preview"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Grateful Bart illustration preview">
+    <div class="most-recent-preview__inner">
+      <img
+        class="most-recent-preview__img"
+        src="favourites/neon1.jpg"
+        alt="Grateful Bart illustration"
+        width="1200"
+        height="1200"
+        decoding="async">
+      <a
+        class="most-recent-preview__link"
+        href="gallery/index.html"
+        target="_blank"
+        rel="noopener noreferrer">Illustration</a>
+    </div>
+  </div>
+
+  <div
+    id="most-recent-preview-dragon"
+    class="most-recent-preview"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="The Dragon illustration preview">
+    <div class="most-recent-preview__inner">
+      <img
+        class="most-recent-preview__img"
+        src="portfolio/TheDragon.jpg"
+        alt="The Dragon — Bruce Lee tribute illustration with twin dragons"
+        width="1200"
+        height="1200"
+        decoding="async">
+      <a
+        class="most-recent-preview__link"
+        href="gallery/index.html"
+        target="_blank"
+        rel="noopener noreferrer">Illustration</a>
+    </div>
+  </div>
 </body>
 </html>

@@ -18,6 +18,7 @@
     ".home-page-grid__project-pair",
     ".graphic-design-band",
     ".blender-band",
+    ".home-most-recent-band",
     ".home-phoenix-feature",
     ".home-page-grid__after",
     ".footer-banner",
