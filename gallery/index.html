@@ -160,6 +160,31 @@
 				box-shadow:0 0 15px rgba(0,245,255,0.15);
 				margin:0 0 16px;
 			}
+			@media (max-width:720px){
+				.title{
+					width:calc(70px * var(--cc-scale, 1));
+					height:auto;
+					min-height:0;
+					max-height:calc(100dvh - 12px);
+					font-size:clamp(14px, calc(18px * var(--cc-scale, 1)), 20px);
+					letter-spacing:0.18em;
+					overflow:visible;
+				}
+				span.reference{
+					right:0.5rem;
+					bottom:max(0.35rem, env(safe-area-inset-bottom, 0px));
+					font-size:10px;
+					line-height:1.35;
+					max-width:calc(100vw - 1rem);
+					text-align:right;
+				}
+				.cc_content p.cc_intro{
+					font-size:max(13px, calc(14px * var(--cc-scale, 1))) !important;
+					line-height:1.45 !important;
+					padding:10px 12px !important;
+					margin:0 0 10px !important;
+				}
+			}
         </style>
     </head>
 

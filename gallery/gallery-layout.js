@@ -15,10 +15,10 @@
     minScale: 0.52,
   };
   var PHONE_LAYOUT = {
-    padV: 40,
-    padH: 76,
-    minScale: 0.38,
-    maxScale: 0.46,
+    padV: 36,
+    padH: 72,
+    minScale: 0.42,
+    maxScale: 0.52,
   };
 
   function readPrefs() {
